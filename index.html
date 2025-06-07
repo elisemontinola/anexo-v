@@ -290,7 +290,6 @@
 
         <div class="export-buttons-container">
             <button class="export-button" onclick="exportFormAsPdf()">Export Form as PDF (Image-based)</button>
-            <button class="export-button" onclick="exportFormAsText()">Export Data as Text</button>
         </div>
     </div>
 
@@ -465,72 +464,8 @@
             });
         }
 
-        function exportFormAsText() {
-            let formData = '';
-            const formContainer = document.getElementById('formContainer');
-
-            const getSpanishText = (selector) => {
-                const el = document.querySelector(selector);
-                return el && el.hasAttribute('data-es') ? el.getAttribute('data-es').trim() : '';
-            };
-
-            const getFieldLabelSpanish = (inputElement) => {
-                const inputId = inputElement.id || inputElement.name;
-                if (labelTranslations[inputId] && typeof labelTranslations[inputId] === 'string') {
-                    return labelTranslations[inputId];
-                } else {
-                    const labelEl = document.querySelector(`label[for="${inputElement.id}"]`);
-                    if (labelEl && labelEl.hasAttribute('data-es')) {
-                        return labelEl.getAttribute('data-es');
-                    } else if (inputElement.hasAttribute('data-es-placeholder')) {
-                        return inputElement.getAttribute('data-es-placeholder');
-                    }
-                }
-                return inputId || '';
-            };
-
-            // --- Header ---
-            formData += getSpanishText('h1[data-es]') + '\n';
-            formData += getSpanishText('p[data-es]:nth-of-type(2)') + '\n';
-            formData += getSpanishText('p[data-es]:nth-of-type(3)') + '\n\n';
-
-            // Main introductory text
-            formData += getSpanishText('section:nth-of-type(3) > p:nth-of-type(1)') + '\n';
-            formData += getSpanishText('section:nth-of-type(3) > p:nth-of-type(2)') + '\n\n';
-
-            // Applicant Info Section
-            formContainer.querySelectorAll('section:nth-of-type(4) .form-group').forEach(group => {
-                const input = group.querySelector('input');
-                if (input) {
-                    const label = getFieldLabelSpanish(input);
-                    formData += `${label} ${input.value}\n`;
-                }
-            });
-            formData += '\n';
-
-            // Signature block text
-            formData += getSpanishText('.signature-block > p:nth-of-type(1)') + '\n';
-            formContainer.querySelectorAll('.signature-block .form-group input').forEach(input => {
-                 if (input.id === 'signature-place') {
-                    formData += `${getFieldLabelSpanish(input)}: ${input.value}\n`;
-                } else if (input.id === 'signature-date') {
-                    formData += `${getFieldLabelSpanish(input)}: ${input.value}\n`;
-                }
-            });
-            formData += getSpanishText('.signature-block > p:nth-of-type(3)') + '\n';
-            formData += getSpanishText('.signature-block > p:nth-of-type(4)') + '\n';
-            formData += getSpanishText('.signature-box') + '\n';
-
-
-            const blob = new Blob([formData], { type: 'text/plain;charset=utf-8' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'Anexo_V_Datos_Formulario.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(a.href);
-        }
+        // Removed exportFormAsText function as per user request
     </script>
 </body>
 </html>
+
