@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo V: Spanish Nationality Option Authentication Form</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+            line-height: 1.5;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 0 1rem;
+            box-sizing: border-box;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #bfdbfe;
+            padding-bottom: 0.5rem;
+        }
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #93c5fd;
+            padding-bottom: 0.3rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            color: #1f2937;
+            box-sizing: border-box;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .form-group input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .grid-layout {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        @media (min-width: 640px) {
+            .grid-layout {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        .full-width {
+            grid-column: span 1;
+        }
+        @media (min-width: 640px) {
+            .full-width-sm {
+                grid-column: span 2;
+            }
+        }
+        .text-block {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .signature-block {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .signature-box {
+            border: 1px solid #cbd5e1;
+            min-height: 5rem;
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        .export-buttons-container, .language-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            align-items: center;
+            padding-bottom: 1rem;
+        }
+        @media (min-width: 640px) {
+            .export-buttons-container, .language-buttons-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .export-button, .language-button {
+                margin: 0 0.5rem;
+            }
+        }
+        .export-button {
+            display: block;
+            width: fit-content;
+            padding: 1rem 2rem;
+            background-color: #10b981;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .export-button:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+        }
+        .export-button:active {
+            background-color: #047857;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .language-button {
+            display: block;
+            width: fit-content;
+            padding: 0.75rem 1.5rem;
+            background-color: #60a5fa;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .language-button:hover {
+            background-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+        .language-button:active {
+            background-color: #2563eb;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .pdf-temp-content {
+            display: block;
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: #1f2937;
+            min-height: 2.75rem;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            background-color: #f8fafc;
+            width: 100%;
+            line-height: 1.25;
+            word-wrap: break-word;
+        }
+        .hide-for-pdf {
+            display: none !important;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="form-container" id="formContainer">
+        <header class="text-center mb-6">
+            <h1 class="section-title" data-en="ANEXO V" data-es="ANEXO V">ANEXO V</h1>
+            <p class="text-xl font-bold text-blue-600" data-en="AUTHENTICATION ENDORSEMENT OF SPANISH NATIONALITY OPTION APPLICATIONS" data-es="DILIGENCIA DE AUTENTICACIÓN DE SOLICITUDES DE OPCIÓN DE LA NACIONALIDAD ESPAÑOLA">AUTHENTICATION ENDORSEMENT OF SPANISH NATIONALITY OPTION APPLICATIONS</p>
+            <p class="text-sm italic mt-2 text-gray-700" data-en="(Additional provision 8 of Law 20/2022)" data-es="(Disposición adicional $8^{a}$ de la Ley 20/2022)">(Additional provision 8 of Law 20/2022)</p>
+        </header>
+
+        <div class="language-buttons-container">
+            <button class="language-button" onclick="toggleLanguage('es')">Traducir al Español</button>
+            <button class="language-button" onclick="toggleLanguage('en')">Revertir al Inglés</button>
+        </div>
+
+        <section class="mb-6">
+            <p class="text-block" data-en="On this same date, in accordance with the provisions of the Instruction of the Directorate General of Legal Security and Public Faith, this endorsement of authentication of the application for Spanish nationality option is extended," data-es="Con esta misma fecha, se procede, de conformidad con lo dispuesto en la Instrucción de la Dirección General de Seguridad Jurídica y Fe Pública, a extender la presente diligencia de autenticación de la solicitud de opción de nacionalidad de española,">On this same date, in accordance with the provisions of the Instruction of the Directorate General of Legal Security and Public Faith, this endorsement of authentication of the application for Spanish nationality option is extended,</p>
+            <p class="text-lg font-bold text-blue-600 text-center" data-en="FORMULATED BY:" data-es="FORMULADA POR:">FORMULATED BY:</p>
+        </section>
+
+        <section>
+            <div class="grid-layout">
+                <div class="form-group">
+                    <label for="applicant-name" data-en="Name:" data-es="Nombre:">Name:</label>
+                    <input type="text" id="applicant-name" name="applicantName">
+                </div>
+                <div class="form-group">
+                    <label for="father-surname" data-en="Father's Surname:" data-es="Apellido del padre:">Father's Surname:</label>
+                    <input type="text" id="father-surname" name="fatherSurname">
+                </div>
+                <div class="form-group">
+                    <label for="mother-surname" data-en="Mother's Surname:" data-es="Apellido de la madre:">Mother's Surname:</label>
+                    <input type="text" id="mother-surname" name="motherSurname">
+                </div>
+                <div class="form-group">
+                    <label for="nationality" data-en="Nationality:" data-es="Nacionalidad:">Nationality:</label>
+                    <input type="text" id="nationality" name="nationality">
+                </div>
+                <div class="form-group">
+                    <label for="civil-status" data-en="Civil Status:" data-es="Estado Civil:">Civil Status:</label>
+                    <input type="text" id="civil-status" name="civilStatus">
+                </div>
+                <div class="form-group">
+                    <label for="passport" data-en="Passport:" data-es="Pasaporte:">Passport:</label>
+                    <input type="text" id="passport" name="passport">
+                </div>
+                <div class="form-group full-width-sm">
+                    <label for="address" data-en="Address:" data-es="Domicilio:">Address:</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                <div class="form-group">
+                    <label for="province" data-en="Province:" data-es="Provincia:">Province:</label>
+                    <input type="text" id="province" name="province">
+                </div>
+                <div class="form-group">
+                    <label for="country" data-en="Country:" data-es="País:">Country:</label>
+                    <input type="text" id="country" name="country">
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone" data-en="Contact Phone:" data-es="Telf. Contacto:">Contact Phone:</label>
+                    <input type="tel" id="contact-phone" name="contactPhone">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-en="E-mail:" data-es="E-mail:">E-mail:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+        </section>
+
+        <section class="signature-block">
+            <p class="text-block text-sm" data-en="In" data-es="En">In</p>
+            <div class="grid-layout">
+                <div class="form-group">
+                    <label for="signature-place" class="sr-only">Place</label>
+                    <input type="text" id="signature-place" name="signaturePlace" placeholder="Place" data-en-placeholder="Place" data-es-placeholder="Lugar">
+                </div>
+                <div class="form-group">
+                    <label for="signature-date" class="sr-only">Date</label>
+                    <input type="date" id="signature-date" name="signatureDate" placeholder="Date" data-en-placeholder="Date" data-es-placeholder="Fecha">
+                </div>
+            </div>
+            <p class="text-sm italic mt-2 text-gray-700" data-en="in application of Additional provision 8 of Law 20/2022." data-es="en aplicación de la Disposición adicional $8^{a}$ de la Ley 20/2022.">in application of Additional provision 8 of Law 20/2022.</p>
+            <p class="text-lg font-bold mt-4" data-en="THE PERSON IN CHARGE OF THE CIVIL REGISTRY" data-es="EL/LA ENCARGADO/A DEL REGISTRO CIVIL">THE PERSON IN CHARGE OF THE CIVIL REGISTRY</p>
+            <div class="signature-box mt-4" data-en-text="Signature/Seal" data-es-text="Firma/Sello">
+                <p>Signature/Seal</p>
+            </div>
+        </section>
+
+        <div class="language-buttons-container">
+            <button class="language-button" onclick="toggleLanguage('es')">Traducir al Español</button>
+            <button class="language-button" onclick="toggleLanguage('en')">Revertir al Inglés</button>
+        </div>
+
+        <div class="export-buttons-container">
+            <button class="export-button" onclick="exportFormAsPdf()">Export Form as PDF (Image-based)</button>
+            <button class="export-button" onclick="exportFormAsText()">Export Data as Text</button>
+        </div>
+    </div>
+
+    <script>
+        let currentDisplayLanguage = 'en';
+
+        const labelTranslations = {
+            // Section Titles (for TXT export structure)
+            'ANEXO V': 'ANEXO V',
+            'AUTHENTICATION ENDORSEMENT OF SPANISH NATIONALITY OPTION APPLICATIONS': 'DILIGENCIA DE AUTENTICACIÓN DE SOLICITUDES DE OPCIÓN DE LA NACIONALIDAD ESPAÑOLA',
+            '(Additional provision 8 of Law 20/2022)': '(Disposición adicional $8^{a}$ de la Ley 20/2022)',
+            'On this same date, in accordance with the provisions of the Instruction of the Directorate General of Legal Security and Public Faith, this endorsement of authentication of the application for Spanish nationality option is extended,': 'Con esta misma fecha, se procede, de conformidad con lo dispuesto en la Instrucción de la Dirección General de Seguridad Jurídica y Fe Pública, a extender la presente diligencia de autenticación de la solicitud de opción de nacionalidad de española,',
+            'FORMULATED BY:': 'FORMULADA POR:',
+            'THE PERSON IN CHARGE OF THE CIVIL REGISTRY': 'EL/LA ENCARGADO/A DEL REGISTRO CIVIL',
+            'in application of Additional provision 8 of Law 20/2022.': 'en aplicación de la Disposición adicional $8^{a}$ de la Ley 20/2022.',
+            'Signature/Seal': 'Firma/Sello', // For signature box text
+
+            // Field Labels (for TXT export)
+            'applicant-name': 'Nombre:',
+            'father-surname': 'Apellido del padre:',
+            'mother-surname': 'Apellido de la madre:',
+            'nationality': 'Nacionalidad:',
+            'civil-status': 'Estado Civil:',
+            'passport': 'Pasaporte:',
+            'address': 'Domicilio:',
+            'province': 'Provincia:',
+            'country': 'País:',
+            'contact-phone': 'Telf. Contacto:',
+            'email': 'E-mail:',
+            'signature-place': 'Lugar de la firma:',
+            'signature-date': 'Fecha de la firma:',
+            'In': 'En' // For the 'In [place]' text block
+        };
+
+        function toggleLanguage(lang) {
+            const elementsToTranslate = document.querySelectorAll('[data-en], [data-es], [data-en-placeholder], [data-es-placeholder], [data-en-text], [data-es-text]');
+
+            elementsToTranslate.forEach(el => {
+                if (el.hasAttribute(`data-${lang}`)) {
+                    if (!el.tagName.includes('INPUT') && !el.tagName.includes('TEXTAREA') && !el.tagName.includes('SELECT')) {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                }
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    if (el.hasAttribute(`data-${lang}-placeholder`)) {
+                        el.setAttribute('placeholder', el.getAttribute(`data-${lang}-placeholder`));
+                    }
+                }
+                if (el.hasAttribute(`data-${lang}-text`)) {
+                    el.textContent = el.getAttribute(`data-${lang}-text`);
+                }
+            });
+            currentDisplayLanguage = lang;
+        }
+
+        async function prepareFormForExport(callback) {
+            const formContainer = document.getElementById('formContainer');
+            const originalElements = [];
+            const tempElements = [];
+
+            // 1. Temporarily switch static texts to Spanish for export
+            const elementsToTranslate = formContainer.querySelectorAll('[data-en], [data-es], [data-en-placeholder], [data-es-placeholder], [data-en-text], [data-es-text]');
+
+            elementsToTranslate.forEach(el => {
+                if (el.hasAttribute('data-es')) {
+                    originalElements.push({ element: el, type: 'text-content', originalContent: el.textContent });
+                    el.textContent = el.getAttribute('data-es');
+                }
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    if (el.hasAttribute('data-es-placeholder')) {
+                        originalElements.push({ element: el, type: 'placeholder', originalPlaceholder: el.getAttribute('placeholder') });
+                        el.setAttribute('placeholder', el.getAttribute('data-es-placeholder'));
+                    }
+                }
+                if (el.hasAttribute('data-es-text')) {
+                    originalElements.push({ element: el, type: 'inner-text', originalContent: el.textContent });
+                    el.textContent = el.getAttribute('data-es-text');
+                }
+            });
+
+            // 2. Hide input fields and display their values as text (for PDF capture)
+            const inputsToTransform = formContainer.querySelectorAll('input, select, textarea');
+            inputsToTransform.forEach(input => {
+                const tempSpan = document.createElement('span');
+                tempSpan.classList.add('pdf-temp-content');
+
+                let displayValue = input.value || ' ';
+                tempSpan.textContent = displayValue === '' ? ' ' : displayValue;
+
+                input.parentNode.insertBefore(tempSpan, input);
+                tempElements.push(tempSpan);
+
+                originalElements.push({ element: input, type: 'input', display: input.style.display });
+                input.classList.add('hide-for-pdf');
+            });
+
+            // Temporarily hide the export/language buttons container
+            const buttonsContainer = document.querySelector('.export-buttons-container');
+            const langButtonsContainers = document.querySelectorAll('.language-buttons-container');
+            if (buttonsContainer) {
+                originalElements.push({ element: buttonsContainer, type: 'button-container', display: buttonsContainer.style.display });
+                buttonsContainer.classList.add('hide-for-pdf');
+            }
+            langButtonsContainers.forEach(container => {
+                if (container) {
+                    originalElements.push({ element: container, type: 'button-container', display: container.style.display });
+                    container.classList.add('hide-for-pdf');
+                }
+            });
+
+            await callback();
+
+            // Restore original HTML elements
+            originalElements.forEach(item => {
+                if (item.type === 'text-content') {
+                    item.element.textContent = item.originalContent;
+                } else if (item.type === 'placeholder') {
+                    item.element.setAttribute('placeholder', item.originalPlaceholder);
+                } else if (item.type === 'inner-text') {
+                    item.element.textContent = item.originalContent;
+                } else {
+                    item.element.classList.remove('hide-for-pdf');
+                    item.element.style.display = item.display;
+                }
+            });
+            tempElements.forEach(span => span.remove());
+            toggleLanguage(currentDisplayLanguage);
+        }
+
+        async function exportFormAsPdf() {
+            await prepareFormForExport(async () => {
+                const formContainer = document.getElementById('formContainer');
+                try {
+                    const canvas = await html2canvas(formContainer, {
+                        scale: 2,
+                        useCORS: true,
+                        windowWidth: formContainer.scrollWidth,
+                        windowHeight: formContainer.scrollHeight
+                    });
+
+                    const imgData = canvas.toDataURL('image/png');
+                    const { jsPDF } = window.jspdf;
+
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'px',
+                        format: 'a4'
+                    });
+
+                    const imgWidth = pdf.internal.pageSize.getWidth();
+                    const pageHeight = pdf.internal.pageSize.getHeight();
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+
+                    let heightLeft = imgHeight;
+                    let position = 0;
+
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+
+                    while (heightLeft > 0) {
+                        pdf.addPage();
+                        position = - (imgHeight - heightLeft);
+                        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+
+                    pdf.save('Anexo_V_Formulario_Cumplimentado.pdf');
+
+                } catch (error) {
+                    console.error("Error al generar PDF:", error);
+                }
+            });
+        }
+
+        function exportFormAsText() {
+            let formData = '';
+            const formContainer = document.getElementById('formContainer');
+
+            const getSpanishText = (selector) => {
+                const el = document.querySelector(selector);
+                return el && el.hasAttribute('data-es') ? el.getAttribute('data-es').trim() : '';
+            };
+
+            const getFieldLabelSpanish = (inputElement) => {
+                const inputId = inputElement.id || inputElement.name;
+                if (labelTranslations[inputId] && typeof labelTranslations[inputId] === 'string') {
+                    return labelTranslations[inputId];
+                } else {
+                    const labelEl = document.querySelector(`label[for="${inputElement.id}"]`);
+                    if (labelEl && labelEl.hasAttribute('data-es')) {
+                        return labelEl.getAttribute('data-es');
+                    } else if (inputElement.hasAttribute('data-es-placeholder')) {
+                        return inputElement.getAttribute('data-es-placeholder');
+                    }
+                }
+                return inputId || '';
+            };
+
+            // --- Header ---
+            formData += getSpanishText('h1[data-es]') + '\n';
+            formData += getSpanishText('p[data-es]:nth-of-type(2)') + '\n';
+            formData += getSpanishText('p[data-es]:nth-of-type(3)') + '\n\n';
+
+            // Main introductory text
+            formData += getSpanishText('section:nth-of-type(3) > p:nth-of-type(1)') + '\n';
+            formData += getSpanishText('section:nth-of-type(3) > p:nth-of-type(2)') + '\n\n';
+
+            // Applicant Info Section
+            formContainer.querySelectorAll('section:nth-of-type(4) .form-group').forEach(group => {
+                const input = group.querySelector('input');
+                if (input) {
+                    const label = getFieldLabelSpanish(input);
+                    formData += `${label} ${input.value}\n`;
+                }
+            });
+            formData += '\n';
+
+            // Signature block text
+            formData += getSpanishText('.signature-block > p:nth-of-type(1)') + '\n';
+            formContainer.querySelectorAll('.signature-block .form-group input').forEach(input => {
+                 if (input.id === 'signature-place') {
+                    formData += `${getFieldLabelSpanish(input)}: ${input.value}\n`;
+                } else if (input.id === 'signature-date') {
+                    formData += `${getFieldLabelSpanish(input)}: ${input.value}\n`;
+                }
+            });
+            formData += getSpanishText('.signature-block > p:nth-of-type(3)') + '\n';
+            formData += getSpanishText('.signature-block > p:nth-of-type(4)') + '\n';
+            formData += getSpanishText('.signature-box') + '\n';
+
+
+            const blob = new Blob([formData], { type: 'text/plain;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'Anexo_V_Datos_Formulario.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+        }
+    </script>
+</body>
+</html>
